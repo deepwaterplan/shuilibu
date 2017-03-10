@@ -5,3 +5,22 @@ https://groups.google.com/forum/#!forum/openpyxl-users
 
 # hardy:
 http://stackoverflow.com/questions/30169149/what-causes-userwarning-discarded-range-with-reserved-name-openpyxl
+
+
+from openpyxl import load_workbook  #必须的 打开Excel文件用的
+from openpyxl import Workbook  #必须的 创建Excel文件缓冲用的
+from openpyxl.writer.excel import ExcelWriter  #向Excel写数据需要导入的模块
+from openpyxl.reader.excel import load_workbook  #从Excel读数据需要导入的模块
+
+wb = load_workbook(filename = r'1.xlsx') #打开一个现有的xlsx文件
+
+wb.get_sheet_names()  #返回sheet名称列表
+
+ws = wb.get_sheet_by_name(sheetnames[0]) 
+#通过sheet名获取sheet的 流对象- -我是这样理解的 新手学
+
+ws.title    #显示表名
+ws.max_row  #显示表行数
+ws.max_column  #显示表列数
+ws.cell(row=ws.max_row+2,column=ws.max_column+2).value='23333max'   #改变指定行的值
+wb.save('test1.xlsx')   # 保存xlsx文档
